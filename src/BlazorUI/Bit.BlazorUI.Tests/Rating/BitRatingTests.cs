@@ -37,7 +37,7 @@ public class BitRatingTests : BunitTestContext
     }
 
     [TestMethod]
-    public void BitRatingShouldRespectIsReadonly()
+    public void BitRatingShouldRespectIsReadOnly()
     {
         var component = RenderComponent<BitRating>(parameters =>
         {
@@ -152,13 +152,13 @@ public class BitRatingTests : BunitTestContext
         DataRow(10, 4, false, true, 1),
         DataRow(10, 0, true, false, 1)
     ]
-    public void BitRatingShouldRespectClickIndex(int max, int clickedIndex, bool isEnabled, bool isReadonly, int expectedResult)
+    public void BitRatingShouldRespectClickIndex(int max, int clickedIndex, bool isEnabled, bool isReadOnly, int expectedResult)
     {
         var component = RenderComponent<BitRating>(parameters =>
         {
             parameters.Add(p => p.Max, max);
             parameters.Add(p => p.IsEnabled, isEnabled);
-            parameters.Add(p => p.IsReadOnly, isReadonly);
+            parameters.Add(p => p.IsReadOnly, isReadOnly);
         });
 
         var bitRatingButtons = component.FindAll(".bit-rtg-btn");
@@ -178,8 +178,8 @@ public class BitRatingTests : BunitTestContext
         Assert.AreEqual(bitRatingButtons.Count(), max);
 
         //TODO: bypassed - BUnit 2-way bound parameters issue
-        Assert.AreEqual((!isEnabled || isReadonly) ? 1 : clickedIndex, filledBitRatingIconCount);
-        Assert.AreEqual((!isEnabled || isReadonly) ? max - 1 : max - clickedIndex, unselectedBitRatingIconCount);
+        Assert.AreEqual((!isEnabled || isReadOnly) ? 1 : clickedIndex, filledBitRatingIconCount);
+        Assert.AreEqual((!isEnabled || isReadOnly) ? max - 1 : max - clickedIndex, unselectedBitRatingIconCount);
     }
 
     [DataTestMethod, DataRow("Detailed label")]
